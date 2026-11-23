@@ -24,12 +24,14 @@ PR yerine bir commit, commit aralığı veya çalışma ağacındaki belirli dos
 
 ## Projeye özgü inceleme notları
 
-Tekrarlanan ürün kurallarını kendi projenin kökünde isteğe bağlı bir `REVIEW_CONTEXT.md` dosyasına yazabilirsin. Depoyu okuyamayan sohbet araçlarında bu dosyayı proje koduyla birlikte ekle veya ilgili kuralları mesajına yaz. Kuralı, etkilenen akışı ve kuralın doğrulanabileceği kodu, testi ya da belgeyi belirtmek yeterli.
+1. [Şablonu](REVIEW_CONTEXT.template.md) kendi projenin köküne `REVIEW_CONTEXT.md` adıyla kopyala. İncelemede gözden kaçabilecek birkaç ürün kuralıyla başla.
+2. Her kural için **ne zaman kontrol edileceğini**, **beklenen davranışı** ve **kanıtın nerede aranacağını** yaz. Varsa ilgili testin yolunu veya komutunu ekle.
+3. Bir regresyon atlandığında tekrar kullanılabilecek kuralı ekle ve doğrulayan teste bağla. Ürün davranışı değiştiğinde ilgili notu ve kaynağını birlikte güncelle.
 
-```markdown
-# Proje inceleme notları
+Örneğin bir takvim uygulamasında, “Saat dilimi veya takvim sorgusu değiştiğinde gece yarısını geçen etkinliğin doğru yerel günde göründüğünü kontrol et. Takvim sorgusunu ve gece yarısı testlerini incele” yazabilirsin. Bir yönetim panelinde ise “Listeleme ve dışa aktarma değiştiğinde şube filtresinin iki akışta da uygulandığını doğrula. Sunucu sorgularını ve şube izolasyonu testlerini incele” gibi bir kural ekleyebilirsin.
 
-- Güncel durum olay zamanına göre hesaplanır.
-- Bir kayıt düzenlendiğinde veya silindiğinde özet ve bildirimler yeniden hesaplanır.
-- Bu kuralların uygulandığı yerler ve kontroller: ilgili modül, test veya belge bağlantıları.
-```
+### İlk taslağı AI ile hazırla
+
+> Bu projeyi incele ve şablona göre `REVIEW_CONTEXT.md` için kısa bir taslak hazırla. Proje talimatlarını, kritik akışları ve ilgili testleri kullan. Her kural için ne zaman kontrol edileceğini, beklenen davranışı ve hangi dosya, test veya belgede doğrulanabileceğini yaz. Belgelenen kurallarla yalnızca mevcut kodda gözlenen davranışı ayır. Belirsiz noktaları bana doğrulama sorusu olarak listele.
+
+Taslağı doğrulayıp kendi projende sakla. Skill dosyalarını düzenlemen gerekmez. Depoyu okuyamayan sohbet araçlarında `REVIEW_CONTEXT.md` dosyasını ilk talep, diff ve ilgili kodla birlikte ekle.

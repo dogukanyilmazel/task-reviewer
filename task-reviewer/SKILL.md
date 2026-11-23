@@ -15,7 +15,7 @@ Perform an independent acceptance review. Decide whether the change satisfies th
 
 ### Optional project review notes
 
-Use project review notes provided in the request or as an attachment. With repository access, also read `REVIEW_CONTEXT.md` at the root of the repository under review if it exists. The notes can identify product invariants, related flows, and sources or checks that are easy to miss. Apply the entries relevant to the task and verify them against the request, applicable repository instructions, and code. If a conflict or missing rule could change acceptance, surface it and mark the affected scenario unverified until resolved.
+Use project review notes provided in the request or as an attachment. With repository access, also read `REVIEW_CONTEXT.md` at the root of the repository under review if it exists. Apply only the relevant entries. Turn each into an acceptance scenario and follow its code, test, or documentation references. Check whether the cited evidence supports the expected behavior. When the reviewed change also alters a rule in the notes, compare it with the baseline and check whether the request authorizes the behavior change. If a conflict or missing rule could change acceptance, surface it and mark the affected scenario unverified until resolved.
 
 ## Follow the behavior
 
