@@ -13,6 +13,13 @@ Choose by affected behavior and verify against the project's runtime, APIs, and 
 - Follow input validation, identity, authorization, and resource scoping to the operation that reads or writes data. Derive the actual boundary from the product, such as a workspace, organization, branch, user, or delegated role. Include related records, lists, exports, and async work if they use that boundary.
 - Verify errors, missing or deleted records, and contract compatibility with existing clients. Check defaults, field and shape changes, mixed versions during deployment, and the order of any schema, backend, and client updates.
 
+## Security and secrets
+
+- Trace untrusted input, such as request fields, headers, uploads, URLs, webhooks, imported files, and model output, to each sink it reaches: queries, shell commands, templates and HTML, file paths, redirects, deserializers, and outbound requests. Check that parameterization, escaping, or allowlisting applies at the sink itself, not only where input enters.
+- Check that secrets, tokens, and personal data stay out of source, logs, error messages, analytics, client bundles, and URLs. Verify that new configuration reads secrets through the project's secret mechanism and that examples, fixtures, and tests contain no real credentials.
+- For sessions, cookies, CSRF, CORS, and webhook or signature verification, compare the change with the framework's documented behavior for the version in use instead of assuming defaults.
+- For new or upgraded dependencies, CI actions, or container images, check the source, the pinned version, install-time scripts, and whether the lockfile changed consistently. Report a known vulnerability only after confirming that the affected version and code path are actually used.
+
 ## Persistent data, time, and derived state
 
 - Trace create, edit, delete, import, and retry paths that feed summaries, caches, alerts, and user-visible state. Check whether all affected consumers reflect the same source of truth. Consider rollback after partial failure and enforce invariants at the persistence layer where races otherwise permit duplicates or invalid state.
