@@ -4,6 +4,8 @@ Yazılım değişikliklerini ilk talebe göre bağımsız inceleyen bir Agent Sk
 
 ## Kurulum
 
+[Hazır `task-reviewer.zip` dosyasını indir](https://github.com/dogukanyilmazel/task-reviewer/releases/latest/download/task-reviewer.zip).
+
 | Araç | Kurulum | Kullanım |
 | --- | --- | --- |
 | [Codex](https://developers.openai.com/api/reference/cli#use-the-cli-from-a-coding-agent) | Tüm projeler için `task-reviewer/` klasörünü `~/.agents/skills/` altına kopyala. Projeye özel kullanım için proje kökündeki `.agents/skills/` altına kopyala. | `$task-reviewer` |
@@ -12,12 +14,22 @@ Yazılım değişikliklerini ilk talebe göre bağımsız inceleyen bir Agent Sk
 | [ChatGPT](https://help.openai.com/en/articles/20001066-skills-in-chatgpt) | Hesabında Skills varsa **Plugins → Skills → Create → Upload from your computer** üzerinden paketi yükle. Kullanılabilirlik hesap ve çalışma alanına bağlıdır. | Sohbette `task-reviewer` skill’ini kullanmasını iste. |
 | Diğer AI araçları veya Skills menüsü olmayan hesaplar | Agent Skills desteği olan araçlarda klasörü aracın skill dizinine koy. Diğerlerinde `SKILL.md` dosyasını ekle veya metnini yapıştır. Gerekirse `references/review-lenses.md` dosyasını da ver. | İlk talebi ve incelenecek değişikliği gönder. |
 
-ZIP dosyasını depodan üretmek için deponun kökünden `zip -r task-reviewer.zip task-reviewer -x '*/.DS_Store'` komutunu çalıştırabilirsin.
-
 ## Örnek kullanım
 
-> task-reviewer ile son değişikliği ilk isteğime göre incele. İlgili kodu ve regresyonları kontrol et. Bulguları, dayandıkları kanıtı ve doğrulayamadığın noktaları yaz. Kodu değiştirme.
+> task-reviewer ile PR #42’yi incele. İlk isteğim, geçmiş tarihli bir kaydı içe aktardığımda kaydın geçmişte görünmesi ve güncel durum göstergesinin değişmemesiydi. Düzenleme ve silme sonrasında da güncel durumu kontrol et. Kodu değiştirmeden bulguları ve doğrulayamadığın noktaları yaz.
 
-AI aracı projeyi doğrudan okuyabiliyorsa incelenecek PR’ı, commit’i veya çalışma ağacını belirt. Sohbet aracı projeyi okuyamıyorsa ilk isteği, diff’i ve ilgili dosyaları ekle. Skill’in inceleme kapsamı kendisine verdiğin kod ve araç erişimine bağlıdır.
+PR yerine bir commit, commit aralığı veya çalışma ağacındaki belirli dosyaları da verebilirsin. Sohbet aracı depoyu açamıyorsa ilk talebi, diff’i ve ilgili dosyaları ekle.
 
 `REVIEW_PASS` mevcut kanıtın kabul için yeterli olduğunu, `CHANGES_REQUIRED` doğrulanmış bir sorunun düzeltilmesi gerektiğini, `REVIEW_INCONCLUSIVE` ise karar için önemli kanıtın eksik olduğunu belirtir.
+
+## Projeye özgü inceleme notları
+
+Tekrarlanan ürün kurallarını kendi projenin kökünde isteğe bağlı bir `REVIEW_CONTEXT.md` dosyasına yazabilirsin. Depoyu okuyamayan sohbet araçlarında bu dosyayı proje koduyla birlikte ekle veya ilgili kuralları mesajına yaz. Kuralı, etkilenen akışı ve kuralın doğrulanabileceği kodu, testi ya da belgeyi belirtmek yeterli.
+
+```markdown
+# Proje inceleme notları
+
+- Güncel durum olay zamanına göre hesaplanır.
+- Bir kayıt düzenlendiğinde veya silindiğinde özet ve bildirimler yeniden hesaplanır.
+- Bu kuralların uygulandığı yerler ve kontroller: ilgili modül, test veya belge bağlantıları.
+```

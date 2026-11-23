@@ -10,8 +10,12 @@ Perform an independent acceptance review. Decide whether the change satisfies th
 ## Establish scope
 
 1. Recover the original request, including later clarifications and explicit constraints. Turn those into observable acceptance scenarios. Use the implementation summary to find code, and verify its claims against the actual artifacts. If the request is missing, ask for it when it would change the verdict and continue any useful review of the available change.
-2. Identify the change under review and its intended baseline from the request, PR, commits, or local changes. When inspecting a workspace diff, account for relevant staged, unstaged, and untracked files. Preserve unrelated work and say which baseline or artifacts you used. If only excerpts are available, scope the conclusions to those excerpts.
+2. Identify the change under review and its intended baseline from the request, PR, commits, or local changes. When inspecting a workspace diff, account for relevant staged, unstaged, and untracked files. If more than one scope is plausible and the choice affects acceptance, ask which change to review and continue with any unambiguous scope. State the baseline or artifacts you used. If only excerpts are available, scope the conclusions to those excerpts.
 3. Read applicable project instructions and inspect the manifests, tests, schemas, or configuration needed to identify the stack and its conventions. Pull requirements such as roles, tenant boundaries, state transitions, and time semantics from the request and project evidence.
+
+### Optional project review notes
+
+Use project review notes provided in the request or as an attachment. With repository access, also read `REVIEW_CONTEXT.md` at the root of the repository under review if it exists. The notes can identify product invariants, related flows, and sources or checks that are easy to miss. Apply the entries relevant to the task and verify them against the request, applicable repository instructions, and code. If a conflict or missing rule could change acceptance, surface it and mark the affected scenario unverified until resolved.
 
 ## Follow the behavior
 
